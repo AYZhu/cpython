@@ -1136,10 +1136,11 @@ init_interp_main(PyThreadState *tstate)
         }
     }
 
+    /**
     status = _PyUnicode_InitEncodings(tstate);
     if (_PyStatus_EXCEPTION(status)) {
         return status;
-    }
+    }*/
 
     if (is_main_interp) {
         if (_PySignal_Init(config->install_signal_handlers) < 0) {
@@ -1151,10 +1152,11 @@ init_interp_main(PyThreadState *tstate)
         }
     }
 
+    /**
     status = init_sys_streams(tstate);
     if (_PyStatus_EXCEPTION(status)) {
         return status;
-    }
+    }*/
 
     status = init_set_builtins_open();
     if (_PyStatus_EXCEPTION(status)) {
@@ -1199,6 +1201,8 @@ init_interp_main(PyThreadState *tstate)
     _PyThread_debug_deprecation();
 
     assert(!_PyErr_Occurred(tstate));
+
+    PySys_WriteStderr("hello, world!\n");
 
     return _PyStatus_OK();
 }
